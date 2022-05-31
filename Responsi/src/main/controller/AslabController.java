@@ -1,7 +1,6 @@
 package main.controller;
 
 import main.model.Aslab_m;
-// import main.model.StructAslab;
 import main.view.dataView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,17 +59,7 @@ public class AslabController {
                     view.setNama(nama);
                     view.setPorto(porto);
                     view.setMicroteach(microteach);
-                    view.setWawancara(wawancara);
-        //   int input = JOptionPane.showConfirmDialog(null,
-        //           "Apa anda ingin menghapus NoHp " + dataterpilih + "?", "Pilih Opsi...", JOptionPane.YES_NO_OPTION);
-
-        //   if (input == 0) {
-        //       lihatModell.deleteContact(dataterpilih);
-        //       String dataKontak[][] = lihatModell.readContact();
-        //       lihatVieww.tabel.setModel(new JTable(dataKontak, lihatVieww.namaKolom).getModel());
-        //   } else {
-        //       JOptionPane.showMessageDialog(null, "Tidak Jadi Dihapus");
-        //   }
+                    view.setWawancara(wawancara); 
             }
         });
 
