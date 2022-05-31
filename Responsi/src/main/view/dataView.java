@@ -14,7 +14,8 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
     
     JLabel ljudul = new JLabel("Data Penerimaan ASLAB");   
     DefaultTableModel dataModel;
-    JTable tabel;
+    public JTable tabel;
+    public Object namaKolom[] = {"Nama", "Portofolio", "Microteaching", "Wawancara", "Nilai Akhir"};
      // Form Section
      JPanel formPanel = new JPanel();
      // label
@@ -23,21 +24,22 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
      JLabel Lmicroteach = new JLabel("Nilai Microteaching : ");
      JLabel Lwawancara = new JLabel("Nilai Wawancara : ");
      // text-field
-     JTextField Tnama = new  JTextField();
-     JTextField Tporto = new  JTextField();
-     JTextField Tmicroteach = new  JTextField();
-     JTextField Twawancara = new  JTextField();
+     public JTextField Tnama = new  JTextField();
+     public JTextField Tporto = new  JTextField();
+     public JTextField Tmicroteach = new  JTextField();
+     public JTextField Twawancara = new  JTextField();
      
      // button 
-     JButton btambah = new JButton("Tambah");
-     JButton bupdate = new JButton("Update");
-     JButton bdelete = new JButton("Delete");
-     JButton bclear = new JButton("Clear");
-     StructAslab[] Data  = new StructAslab[500];
+     public JButton btambah = new JButton("Tambah");
+     public JButton bupdate = new JButton("Update");
+     public JButton bdelete = new JButton("Delete");
+     public JButton bclear = new JButton("Clear");
+     
+     //StructAslab[] Data  = new StructAslab[500];
     
-    public dataView(StructAslab[] data){
+    public dataView(){
         addMouseListener(this); 
-        this.Data = data;
+        //this.Data = data;
         setTitle("Data Penerimaan ASLAB");
         setSize(850,600);
         setVisible(true);
@@ -47,9 +49,8 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
         ljudul.setBounds(10, 10, 260, 40);
         
         // Table Section
-        dataModel = new DefaultTableModel();
+        dataModel = new DefaultTableModel(namaKolom, 0);
         tabel = new JTable(dataModel);
-        dataModel.setColumnIdentifiers(new Object[]{"Nama", "Portofolio", "Microteaching", "Wawancara", "Nilai Akhir"});
         					
         TableColumn column;
         tabel.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF); 
@@ -76,7 +77,7 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
         JScrollPane scroll = new JScrollPane(tabel);
         this.add(scroll);
         scroll.setBounds(20,50,520,200);
-        this.addData();
+        // this.addData();
         
        // Form Section 
        formPanel.setBounds(550, 50, 250, 450);  
@@ -115,22 +116,52 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
         setVisible(true);
     }
 
-    public void addData() {
-        StructAslab[] DataList = this.Data;
-       for (StructAslab aslab : DataList) {
-            try {
-                dataModel.addRow(new Object[]{
-                    // aslab.getId(), 
-                    aslab.getNama(),
-                    String.format("%,.2f", aslab.getPorto()),
-                    String.format("%,.2f", aslab.getMicroteach()),
-                    String.format("%,.2f", aslab.getWawancara()),
-                    String.format("%,.2f", aslab.getNilai())});
-            } catch (Exception e) {
+    // public void addData() {
+    //     StructAslab[] DataList = this.Data;
+    //    for (StructAslab aslab : DataList) {
+    //         try {
+    //             dataModel.addRow(new Object[]{
+    //                 // aslab.getId(), 
+    //                 aslab.getNama(),
+    //                 String.format("%,.2f", aslab.getPorto()),
+    //                 String.format("%,.2f", aslab.getMicroteach()),
+    //                 String.format("%,.2f", aslab.getWawancara()),
+    //                 String.format("%,.2f", aslab.getNilai())});
+    //         } catch (Exception e) {
 
-            }
-        }
+    //         }
+    //     }
+    // }
+
+    public String getNama(){
+        return Tnama.getText();
     }
+
+    public double getPorto(){
+        double porto = Double.parseDouble(Tporto.getText());
+        return porto;
+    }
+
+    public double getMicroteach(){
+        double microteach = Double.parseDouble(Tmicroteach.getText());
+        return microteach;
+    }
+
+    public double getWawancara(){
+        double wawancara = Double.parseDouble(Twawancara.getText());
+        return wawancara;
+    }
+
+    public double getNilai(){
+        double nilai = (getPorto() + getMicroteach() + getWawancara())/3;
+        return nilai;
+    }
+
+
+
+
+
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if (tabel.getSelectedRow() != -1) {
