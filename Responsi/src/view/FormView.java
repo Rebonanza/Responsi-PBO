@@ -77,22 +77,21 @@ public class FormView extends JFrame implements MouseListener, ActionListener {
         //this.addData();
         
        // Form Secction 
-       formPanel.setBackground(Color.BLUE);
        formPanel.setBounds(550, 50, 250, 450);  
        formPanel.setLayout(null);
-       Lnama.setBounds(10,20,50,10);
-       Tnama.setBounds(10, 40, 200, 20);
-       Lporto.setBounds(10, 80, 80, 10);
-       Tporto.setBounds(10, 100, 200, 20);
-       Lmicroteach.setBounds(10, 140, 100, 10);
-       Tmicroteach.setBounds(10, 160, 200, 20);
-       Lwawancara.setBounds(10, 200, 100, 10);
-       Twawancara.setBounds(10, 220, 200, 20);
+       Lnama.setBounds(10,0,100,20);
+       Tnama.setBounds(10, 20, 200, 20);
+       Lporto.setBounds(10, 60, 150, 20);
+       Tporto.setBounds(10, 80, 200, 20);
+       Lmicroteach.setBounds(10, 120, 150, 20);
+       Tmicroteach.setBounds(10, 140, 200, 20);
+       Lwawancara.setBounds(10, 180, 150, 20);
+       Twawancara.setBounds(10, 200, 200, 20);
     
-        btambah.setBounds(10, 300, 200, 25);
-        bupdate.setBounds(10, 330, 200, 25);
-        bdelete.setBounds(10, 360, 200, 25);
-        bclear.setBounds(10, 390, 200, 25);
+        btambah.setBounds(10, 250, 200, 25);
+        bupdate.setBounds(10, 280, 200, 25);
+        bdelete.setBounds(10, 330, 200, 25);
+        bclear.setBounds(10, 360, 200, 25);
 
        formPanel.add(Tnama);
        formPanel.add(Lnama);
