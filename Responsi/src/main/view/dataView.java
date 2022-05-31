@@ -6,11 +6,10 @@ import javax.swing.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import javax.swing.table.*;
 import main.controller.*;
-import main.model.StructAslab;
+
 
 public class dataView extends JFrame implements MouseListener, ActionListener {
 
-    //KaryawanController Karyawan = new KaryawanController();
     
     JLabel ljudul = new JLabel("Data Penerimaan ASLAB");   
     DefaultTableModel dataModel;
@@ -35,11 +34,9 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
      public JButton bdelete = new JButton("Delete");
      public JButton bclear = new JButton("Clear");
      
-     //StructAslab[] Data  = new StructAslab[500];
     
     public dataView(){
         addMouseListener(this); 
-        //this.Data = data;
         setTitle("Data Penerimaan ASLAB");
         setSize(850,600);
         setVisible(true);
@@ -77,7 +74,6 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
         JScrollPane scroll = new JScrollPane(tabel);
         this.add(scroll);
         scroll.setBounds(20,50,520,200);
-        // this.addData();
         
        // Form Section 
        formPanel.setBounds(550, 50, 250, 450);  
@@ -115,23 +111,6 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
-    // public void addData() {
-    //     StructAslab[] DataList = this.Data;
-    //    for (StructAslab aslab : DataList) {
-    //         try {
-    //             dataModel.addRow(new Object[]{
-    //                 // aslab.getId(), 
-    //                 aslab.getNama(),
-    //                 String.format("%,.2f", aslab.getPorto()),
-    //                 String.format("%,.2f", aslab.getMicroteach()),
-    //                 String.format("%,.2f", aslab.getWawancara()),
-    //                 String.format("%,.2f", aslab.getNilai())});
-    //         } catch (Exception e) {
-
-    //         }
-    //     }
-    // }
 
     public String getNama(){
         return Tnama.getText();
@@ -182,10 +161,6 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (tabel.getSelectedRow() != -1) {
-            int index = tabel.getSelectedRow() ;
-            //Karyawan.viewPerhitunganGaji(this, karyawan1[index]);
-        }
     }
 
     @Override
@@ -210,9 +185,7 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    // if (e.getSource() == buttonBack){
-    //         //Karyawan.back(this);
-    //     }
+
     }
     
 }

@@ -1,5 +1,4 @@
 package main.model;
-import main.Koneksi;
 import java.sql.*;
 import java.sql.ResultSet;
 
@@ -48,9 +47,8 @@ public class Aslab_m {
     public Object[][] getAll(){
          try{
             int jumlahData = 0;
-            String query = "SELECT * fROM aslab"; //pengambilan data dari 'karyawan'
+            String query = "SELECT * fROM aslab"; 
             Object data[][] = new Object[getJumlahData()][5];
-            // connector.statement = statement.createStatement();
             ResultSet resultSet = statement.executeQuery(query); 
             
             while(resultSet.next()){ 
@@ -107,7 +105,7 @@ public class Aslab_m {
                 similar++;
             }
 
-            if (similar==1) { // karena no hp merupakan unique value, maka dapat dipastikan hanya ada satu jika ada
+            if (similar==1) { 
                 query = "UPDATE aslab SET Nama='" + nama + "', portofolio='" + porto + "', microteaching='" + microteach + "', wawancara='" + wawancara + "', nilai='" + nilai + "' WHERE nama='"+nama+"'";
                 statement = (Statement) koneksi.createStatement();
                 statement.executeUpdate(query); //execute querynya
