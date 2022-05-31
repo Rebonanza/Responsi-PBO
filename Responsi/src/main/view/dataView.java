@@ -1,17 +1,19 @@
-package view;
+package main.view;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import javax.swing.table.*;
+import main.controller.*;
+import main.model.StructAslab;
 
-public class FormView extends JFrame implements MouseListener, ActionListener {
+public class dataView extends JFrame implements MouseListener, ActionListener {
 
     //KaryawanController Karyawan = new KaryawanController();
     
     JLabel ljudul = new JLabel("Data Penerimaan ASLAB");   
-    DefaultTableModel model;
+    DefaultTableModel dataModel;
     JTable tabel;
      // Form Section
      JPanel formPanel = new JPanel();
@@ -31,12 +33,12 @@ public class FormView extends JFrame implements MouseListener, ActionListener {
      JButton bupdate = new JButton("Update");
      JButton bdelete = new JButton("Delete");
      JButton bclear = new JButton("Clear");
-    //DtKaryawan[] karyawan1 = new DtKaryaw an[500];
+     StructAslab[] Data  = new StructAslab[500];
     
-    public FormView(){
+    public dataView(StructAslab[] data){
         addMouseListener(this); 
-        // this.karyawan1 = karyawan1;
-        setTitle("List Data Karyawan");
+        this.Data = data;
+        setTitle("Data Penerimaan ASLAB");
         setSize(850,600);
         setVisible(true);
         setLayout(null);
@@ -45,9 +47,9 @@ public class FormView extends JFrame implements MouseListener, ActionListener {
         ljudul.setBounds(10, 10, 260, 40);
         
         // Table Section
-        model = new DefaultTableModel();
-        tabel = new JTable(model);
-        model.setColumnIdentifiers(new Object[]{"Nama", "Portofolio", "Microteaching", "Wawancara", "Nilai Akhir"});
+        dataModel = new DefaultTableModel();
+        tabel = new JTable(dataModel);
+        dataModel.setColumnIdentifiers(new Object[]{"Nama", "Portofolio", "Microteaching", "Wawancara", "Nilai Akhir"});
         					
         TableColumn column;
         tabel.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF); 
@@ -74,9 +76,9 @@ public class FormView extends JFrame implements MouseListener, ActionListener {
         JScrollPane scroll = new JScrollPane(tabel);
         this.add(scroll);
         scroll.setBounds(20,50,520,200);
-        //this.addData();
+        this.addData();
         
-       // Form Secction 
+       // Form Section 
        formPanel.setBounds(550, 50, 250, 450);  
        formPanel.setLayout(null);
        Lnama.setBounds(10,0,100,20);
@@ -113,21 +115,22 @@ public class FormView extends JFrame implements MouseListener, ActionListener {
         setVisible(true);
     }
 
-    // private void addData() {
-    //     // DtKaryawan[] listData = this.karyawan1;
-    //    for (DtKaryawan dtkaryawan : listData) {
-    //         try {
-    //             model.addRow(new Object[]{
-    //                 dtkaryawan.getId(), 
-    //                 dtkaryawan.getNama(),
-    //                 dtkaryawan.getDivisi(),
-    //                 dtkaryawan.getUsia(), 
-    //                 String.format("%,.2f", dtkaryawan.getGaji())});
-    //         } catch (Exception e) {
+    public void addData() {
+        StructAslab[] DataList = this.Data;
+       for (StructAslab aslab : DataList) {
+            try {
+                dataModel.addRow(new Object[]{
+                    // aslab.getId(), 
+                    aslab.getNama(),
+                    String.format("%,.2f", aslab.getPorto()),
+                    String.format("%,.2f", aslab.getMicroteach()),
+                    String.format("%,.2f", aslab.getWawancara()),
+                    String.format("%,.2f", aslab.getNilai())});
+            } catch (Exception e) {
 
-    //         }
-    //     }
-    // }
+            }
+        }
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
         if (tabel.getSelectedRow() != -1) {
