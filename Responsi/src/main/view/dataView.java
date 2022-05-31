@@ -157,6 +157,24 @@ public class dataView extends JFrame implements MouseListener, ActionListener {
         return nilai;
     }
 
+    public void setNama(String nama){
+        Tnama.setText(nama);
+    }
+    public void setPorto(double porto){
+        
+        Tporto.setText(String.valueOf(porto));
+    }
+
+    public void setMicroteach(double microteach){
+        Tmicroteach.setText(String.valueOf(microteach));
+    }
+
+    public void setWawancara(double wawancara){
+        Twawancara.setText(String.valueOf(wawancara));
+    }
+
+
+
 
 
 

@@ -73,8 +73,7 @@ public class Aslab_m {
     public void insert(String nama, double porto, double microteach, double wawancara, double nilai){
         int  similar=0;
         try {
-            String query = "select * from aslab WHERE nama='"+nama+"'"; // cek apakah data sudah ada
-            // System.out.println(Nama + " " + NoHp + " " + Umur + " " + Email);
+            String query = "select * from aslab WHERE nama='"+nama+"'";
             ResultSet resultSet = statement.executeQuery(query);
 
             while(resultSet.next()){
@@ -92,6 +91,33 @@ public class Aslab_m {
             else {
                 JOptionPane.showMessageDialog(null, "Data sudah ada");
             }
+        } catch (Exception sql) {
+            System.out.println(sql.getMessage());
+            JOptionPane.showMessageDialog(null, sql.getMessage());
+        }
+    }
+
+    public void update(String nama, double porto, double microteach, double wawancara, double nilai){
+        int similar=0;
+        try {
+            String query = "select * from aslab WHERE nama='"+nama+"'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()){
+                similar++;
+            }
+
+            if (similar==1) { // karena no hp merupakan unique value, maka dapat dipastikan hanya ada satu jika ada
+                query = "UPDATE aslab SET Nama='" + nama + "', portofolio='" + porto + "', microteaching='" + microteach + "', wawancara='" + wawancara + "', nilai='" + nilai + "' WHERE nama='"+nama+"'";
+                statement = (Statement) koneksi.createStatement();
+                statement.executeUpdate(query); //execute querynya
+                System.out.println("Berhasil diupdate");
+                JOptionPane.showMessageDialog(null, "Data Berhasil diupdate");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Data Tidak Ada");
+            }
+
         } catch (Exception sql) {
             System.out.println(sql.getMessage());
             JOptionPane.showMessageDialog(null, sql.getMessage());
