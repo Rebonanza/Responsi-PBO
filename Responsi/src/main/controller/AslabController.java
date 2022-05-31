@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.lang.model.util.ElementScanner6;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -34,7 +36,11 @@ public class AslabController {
                 double microteach = view.getMicroteach();
                 double wawancara = view.getWawancara();
                 double nilaiAkhir = view.getNilai();
-                model.insert(nama, portofolio, microteach, wawancara, nilaiAkhir);
+                if(wawancara > 100 || portofolio > 100 || wawancara > 100){
+                    JOptionPane.showMessageDialog(null, "Nilai tidak boleh lebih dari 100");
+                }else{
+                    model.insert(nama, portofolio, microteach, wawancara, nilaiAkhir);
+                }
 
                 Object[][] data = model.getAll();
                 view.tabel.setModel((new JTable(data, view.namaKolom)).getModel());
@@ -47,15 +53,14 @@ public class AslabController {
                 super.mousePressed(e);
                     int baris = view.tabel.getSelectedRow();
                     //String dataterpilih = lihatVieww.tabel.getValueAt(baris, 1).toString();
-                    System.out.println(baris);
                     String nama = view.tabel.getValueAt(baris, 0).toString();
                     String porto = view.tabel.getValueAt(baris, 1).toString();
                     String microteach = view.tabel.getValueAt(baris,2).toString();
                     String wawancara  = view.tabel.getValueAt(baris, 3).toString();
                     view.setNama(nama);
-                    view.setPorto(Double.valueOf(porto));
-                    view.setMicroteach(Double.valueOf(microteach));
-                    view.setWawancara(Double.valueOf(wawancara));
+                    view.setPorto(porto);
+                    view.setMicroteach(microteach);
+                    view.setWawancara(wawancara);
         //   int input = JOptionPane.showConfirmDialog(null,
         //           "Apa anda ingin menghapus NoHp " + dataterpilih + "?", "Pilih Opsi...", JOptionPane.YES_NO_OPTION);
 
@@ -77,10 +82,41 @@ public class AslabController {
                 double microteach = view.getMicroteach();
                 double wawancara = view.getWawancara();
                 double nilaiAkhir = view.getNilai();
+                if(wawancara > 100 || portofolio > 100 || wawancara > 100){
+                    JOptionPane.showMessageDialog(null, "Nilai tidak boleh lebih dari 100");
+                }else{
+                    model.insert(nama, portofolio, microteach, wawancara, nilaiAkhir);
+                }
                 model.update(nama, portofolio, microteach, wawancara, nilaiAkhir);
 
                 Object[][] data = model.getAll();
                 view.tabel.setModel((new JTable(data, view.namaKolom)).getModel());
+            }
+        });
+        view.bdelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int selected = view.tabel.getSelectedRow();
+                if(selected >= 0){
+                    model.delete(view.tabel.getValueAt(selected, 0).toString());
+                }else{
+                    JOptionPane.showMessageDialog(null, "Data Belum Dipilih");
+                }
+                Object[][] data = model.getAll();
+                view.tabel.setModel((new JTable(data, view.namaKolom)).getModel());
+            }
+        });
+
+        view.bclear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                view.setNama("");
+                view.setPorto("");
+                view.setMicroteach("");
+                view.setWawancara("");
+                Object[][] data = model.getAll();
+                view.tabel.setModel((new JTable(data, view.namaKolom)).getModel());
+                
             }
         });
     }

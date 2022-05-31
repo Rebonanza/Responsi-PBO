@@ -123,4 +123,16 @@ public class Aslab_m {
             JOptionPane.showMessageDialog(null, sql.getMessage());
         }
     }
+
+    public void delete(String nama) {
+        try{
+            String query = "DELETE FROM aslab WHERE nama = '"+nama+"'";
+            statement = koneksi.createStatement();
+            statement.executeUpdate(query);
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+
+        }catch(SQLException sql) {
+            System.out.println(sql.getMessage());
+        }
+    }
 }
