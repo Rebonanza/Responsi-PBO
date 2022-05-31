@@ -10,7 +10,7 @@ public class FormView extends JFrame implements MouseListener, ActionListener {
 
     //KaryawanController Karyawan = new KaryawanController();
     
-    JLabel ljudul = new JLabel("List Data Karyawan");   
+    JLabel ljudul = new JLabel("Data Penerimaan ASLAB");   
     DefaultTableModel model;
     JTable tabel;
      // Form Section

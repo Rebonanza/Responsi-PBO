@@ -1,6 +1,6 @@
 import java.sql.*;
 public class Koneksi {
-    String DBurl = "jdbc:mysql://localhost/responsi";
+    String DBurl = "jdbc:mysql://localhost/responsi2";
     String DBusername = "root";
     String DBpassword = "";
     public Connection koneksi;
