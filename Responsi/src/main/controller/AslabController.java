@@ -35,7 +35,7 @@ public class AslabController {
                 double microteach = view.getMicroteach();
                 double wawancara = view.getWawancara();
                 double nilaiAkhir = view.getNilai();
-                if(wawancara > 100 || portofolio > 100 || wawancara > 100){
+                if(wawancara > 100 || portofolio > 100 || microteach > 100){
                     JOptionPane.showMessageDialog(null, "Nilai tidak boleh lebih dari 100");
                 }else{
                     model.insert(nama, portofolio, microteach, wawancara, nilaiAkhir);
@@ -74,7 +74,7 @@ public class AslabController {
                 if(wawancara > 100 || portofolio > 100 || wawancara > 100){
                     JOptionPane.showMessageDialog(null, "Nilai tidak boleh lebih dari 100");
                 }else{
-                    model.insert(nama, portofolio, microteach, wawancara, nilaiAkhir);
+                    model.update(nama, portofolio, microteach, wawancara, nilaiAkhir);
                 }
                 model.update(nama, portofolio, microteach, wawancara, nilaiAkhir);
 
